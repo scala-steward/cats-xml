@@ -5,7 +5,7 @@ lazy val prjPackageName         = prjName.replaceAll("[^\\p{Alpha}\\d]+", ".")
 lazy val prjDescription         = "A purely functional XML library"
 lazy val prjOrg                 = "com.github.geirolz"
 lazy val scala213               = "2.13.10"
-lazy val scala32                = "3.2.1"
+lazy val scala32                = "3.2.2"
 lazy val supportedScalaVersions = List(scala213, scala32)
 
 //## global project to no publish ##
@@ -15,8 +15,8 @@ lazy val `cats-xml`: Project = project
   .settings(
     inThisBuild(
       List(
-        homepage     := Some(url(s"https://github.com/geirolz/$prjName")),
-        licenses     := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+        homepage := Some(url(s"https://github.com/geirolz/$prjName")),
+        licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
         developers := List(
           Developer(
             "DavidGeirola",
