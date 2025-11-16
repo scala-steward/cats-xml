@@ -7,8 +7,8 @@ object XmlNormalizer extends XmlNormalizerSyntax {
 
     def trimTextZappingEmpty(node: Node): Seq[Node] =
       node match {
-        case Text(text) if text.trim.isEmpty => Nil
-        case Text(text)                      => List(Text(text.trim))
+        case Text(text) if text.trim.isEmpty    => Nil
+        case Text(text)                         => List(Text(text.trim))
         case Elem(pre, lab, md, scp, children*) =>
           Elem(pre, lab, md, scp, false, children.flatMap(trimTextZappingEmpty)*)
         case _ => List(node)
