@@ -9,14 +9,14 @@ lazy val scala32                = "3.2.1"
 lazy val supportedScalaVersions = List(scala213, scala32)
 
 //## global project to no publish ##
-val copyReadMe = taskKey[Unit]("Copy generated README to main folder.")
+val copyReadMe               = taskKey[Unit]("Copy generated README to main folder.")
 lazy val `cats-xml`: Project = project
   .in(file("."))
   .settings(
     inThisBuild(
       List(
-        homepage     := Some(url(s"https://github.com/geirolz/$prjName")),
-        licenses     := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+        homepage   := Some(url(s"https://github.com/geirolz/$prjName")),
+        licenses   := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
         developers := List(
           Developer(
             "DavidGeirola",
@@ -51,8 +51,8 @@ lazy val docs: Project =
       ).flatten,
       // config
       scalacOptions --= Seq("-Werror", "-Xfatal-warnings"),
-      mdocIn  := file("docs/source"),
-      mdocOut := file("docs/compiled"),
+      mdocIn        := file("docs/source"),
+      mdocOut       := file("docs/compiled"),
       mdocVariables := Map(
         "VERSION" -> previousStableVersion.value.getOrElse("<version>"),
         "DOC_OUT" -> mdocOut.value.getPath

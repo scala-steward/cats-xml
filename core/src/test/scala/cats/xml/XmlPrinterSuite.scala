@@ -100,7 +100,7 @@ class XmlPrinterSuite extends munit.FunSuite {
   test("XmlPrinter.default with Null nodes") {
 
     val optNode: Option[XmlNode] = None
-    val node: XmlNode =
+    val node: XmlNode            =
       XmlNode("Wrapper")
         .withAttributes(
           "a" := 1,

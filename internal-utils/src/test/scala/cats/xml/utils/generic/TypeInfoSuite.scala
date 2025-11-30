@@ -15,7 +15,7 @@ class TypeInfoSuite extends munit.FunSuite {
         isPrimitive                    = false,
         isValueClass                   = false,
         isOptionOfAnyPrimitiveOrString = false,
-        accessorsInfo = Map(
+        accessorsInfo                  = Map(
           ParamName(
             value = "a"
           ) -> TypeInfo.of[String](
@@ -44,7 +44,7 @@ class TypeInfoSuite extends munit.FunSuite {
             isPrimitive                    = false,
             isValueClass                   = false,
             isOptionOfAnyPrimitiveOrString = false,
-            accessorsInfo = Map(
+            accessorsInfo                  = Map(
               ParamName(
                 value = "d"
               ) -> TypeInfo.of[String](

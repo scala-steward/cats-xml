@@ -28,7 +28,7 @@ object ParamNameExtractor {
         tree match {
           case q"$parent.$child " => collectPathElements(parent, TermPathElement(child) :: acc)
           case _: Ident           => acc
-          case _ =>
+          case _                  =>
             c.abort(
               c.enclosingPosition,
               s"Unsupported path element. $expectedShapeInfo, got: $tree"

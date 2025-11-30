@@ -11,7 +11,7 @@ class FreeCursorSuite extends munit.FunSuite {
   test("FreeCursor.focus - valid") {
 
     val cursor: FreeCursor[Xml, Int] = Root.bar.test.as[Int]
-    val node: XmlNode =
+    val node: XmlNode                =
       XmlNode("foo")
         .withChildren(
           XmlNode("bar")
@@ -40,7 +40,7 @@ class FreeCursorSuite extends munit.FunSuite {
   test("FreeCursor.map") {
 
     val cursor: FreeCursor[Xml, Int] = Root.bar.test.as[Int]
-    val node: XmlNode =
+    val node: XmlNode                =
       XmlNode("foo")
         .withChildren(
           XmlNode("bar")
@@ -58,7 +58,7 @@ class FreeCursorSuite extends munit.FunSuite {
   test("FreeCursor.validate - valid") {
 
     val cursor: FreeCursor[Xml, Int] = Root.bar.test.as[Int]
-    val node: XmlNode =
+    val node: XmlNode                =
       XmlNode("foo")
         .withChildren(
           XmlNode("bar")
@@ -78,7 +78,7 @@ class FreeCursorSuite extends munit.FunSuite {
   test("FreeCursor.validate - invalid") {
 
     val cursor: FreeCursor[Xml, Int] = Root.bar.test.as[Int]
-    val node: XmlNode =
+    val node: XmlNode                =
       XmlNode("foo")
         .withChildren(
           XmlNode("bar")
@@ -94,7 +94,7 @@ class FreeCursorSuite extends munit.FunSuite {
       expected = Invalid(
         NonEmptyList.of(
           CursorFailure.ValidationsFailed(
-            path = "/bar/test",
+            path   = "/bar/test",
             errors = NonEmptyList.of(
               "Value '1' is NOT in range [10 <= x <= 100]",
               "Value '1' is NOT >= '2'"
