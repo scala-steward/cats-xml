@@ -371,7 +371,7 @@ class DecoderCompanionSuite extends munit.FunSuite {
 
     case class Foo(a: Int, b: Int, c: Int)
 
-    val ex = new NumberFormatException("For input string: \"INVALID\"")
+    val ex                    = new NumberFormatException("For input string: \"INVALID\"")
     val decoder: Decoder[Foo] = Decoder
       .fromCursor(c =>
         (
