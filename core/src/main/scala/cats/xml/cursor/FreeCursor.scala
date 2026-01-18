@@ -89,12 +89,12 @@ object FreeCursor extends FreeCursorInstances {
 
         val cursorResult: Cursor.Result[Xml] = xml match {
           case node: XmlNode => cursor.focus(node)
-          case element =>
+          case element       =>
             Left(CursorFailure.InvalidTargetType(XmlNode.getClass, element.getClass))
         }
 
         Decoder[O].decodeCursorResult(cursorResult) match {
-          case Valid(value) => value.validNel
+          case Valid(value)                                    => value.validNel
           case Invalid(failures: NonEmptyList[DecoderFailure]) =>
             val cursorFailures: NonEmptyList[CursorFailure] = failures.toList
               .partitionEither {
@@ -109,8 +109,8 @@ object FreeCursor extends FreeCursorInstances {
                   .map(CursorFailure.DecoderFailed(cursor.path, _))
                   .value
               ) match {
-              case (Some(cursorFailsNel), None)   => cursorFailsNel
-              case (None, Some(otherDecFailsNel)) => otherDecFailsNel
+              case (Some(cursorFailsNel), None)                   => cursorFailsNel
+              case (None, Some(otherDecFailsNel))                 => otherDecFailsNel
               case (Some(cursorFailsNel), Some(otherDecFailsNel)) =>
                 cursorFailsNel ::: otherDecFailsNel
 

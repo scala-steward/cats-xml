@@ -37,7 +37,7 @@ object CursorBuilder {
   ): Either[XPathError, Endo[NodeCursor]] =
     step match {
       case nafs @ NonAbbrevForwardStep(_, _) => notSupported(nafs)
-      case step: AbbrevForwardStep =>
+      case step: AbbrevForwardStep           =>
         step match {
           case SimpleAbbrevForwardStep(nodeTest)         => cursorModifierFromNodeTest(nodeTest)
           case aaafs @ AttributeAxisAbbrevForwardStep(_) => notSupported(aaafs)
@@ -293,11 +293,11 @@ object CursorBuilder {
     pathExpr: PathExpr
   ): Either[XPathError, Endo[NodeCursor]] =
     pathExpr match {
-      case SlashOnlyPathExpr => Right(identity)
+      case SlashOnlyPathExpr                                 => Right(identity)
       case PathExprStartingWithSingleSlash(relativePathExpr) =>
         cursorModifierFromRelativePathExpr(relativePathExpr)
       case peswds @ PathExprStartingWithDoubleSlash(_) => notSupported(peswds)
-      case relativePathExpr: RelativePathExpr =>
+      case relativePathExpr: RelativePathExpr          =>
         cursorModifierFromRelativePathExpr(relativePathExpr)
     }
 
