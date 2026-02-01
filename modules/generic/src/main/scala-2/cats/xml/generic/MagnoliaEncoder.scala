@@ -31,7 +31,7 @@ object MagnoliaEncoder {
           paramInfo: XmlElemTypeParamInfo
         ): Unit =
           xml match {
-            case XmlNull => ()
+            case XmlNull                                                      => ()
             case data: XmlData if paramInfo.elemType == XmlElemType.Attribute =>
               nodeBuild.unsafeMuteNode(
                 _.appendAttr(
@@ -81,7 +81,7 @@ object MagnoliaEncoder {
 
           subTypeXml match {
             case group: XmlNode.Group => base.withContent(group.content)
-            case node: XmlNode.Node =>
+            case node: XmlNode.Node   =>
               base
                 .appendAttrs(node.attributes)
                 .withContent(node.content)
