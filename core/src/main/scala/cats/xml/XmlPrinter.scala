@@ -98,12 +98,12 @@ object XmlPrinter {
           acc.append(transform(str))
 
         xml match {
-          case XmlNull => acc
+          case XmlNull            => acc
           case attr: XmlAttribute =>
             if (Debug.enabledAnd(_.xmlPrinterPrintTypesName)) {
               attr.value match {
                 case Xml.Null => append(s"${attr.key}=\"NULL\"")
-                case _ =>
+                case _        =>
                   append(
                     s"${attr.key}=\"${Show[XmlData].show(attr.value)}:${attr.value.getClass.getTypeName}\""
                   )
@@ -156,13 +156,13 @@ object XmlPrinter {
 
             // append content
             nodeContent match {
-              case NodeContent.Empty => ()
+              case NodeContent.Empty      => ()
               case NodeContent.Text(data) =>
                 recAppend(
                   xml        = data,
                   acc        = acc,
                   indentator = indentator.forward,
-                  transform = transform.andThen(str => {
+                  transform  = transform.andThen(str => {
                     if (nodeContent.isText && exceedTextMaxSize(str.length))
                       s"$returnString${indentator.forward.indentation}$str$returnString"
                     else
@@ -199,8 +199,8 @@ object XmlPrinter {
       }
 
       recAppend(
-        xml = xml,
-        acc = new mutable.StringBuilder(),
+        xml        = xml,
+        acc        = new mutable.StringBuilder(),
         indentator = Indentator.root(
           char = config.indentChar,
           size = config.indentSize

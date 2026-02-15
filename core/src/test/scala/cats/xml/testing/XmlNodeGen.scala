@@ -88,7 +88,7 @@ object XmlNodeGen {
     for {
       nodeName   <- Gen.lzy(getNonEmptyString(maxNodeName))
       attributes <- Gen.lzy(genXmlAttributes(maxAttrs, maxAttrNameSize, maxAttrValueSize))
-      content <- Gen.lzy(
+      content    <- Gen.lzy(
         Gen.frequency(
           2  -> Gen.const(NodeContent.empty),
           18 -> Gen.lzy(getNonEmptyString(maxTextSize).map(NodeContent.textOrEmpty(_))),
@@ -106,7 +106,7 @@ object XmlNodeGen {
     maxAttrValueSize: Int = 10
   ): Gen[List[XmlAttribute]] =
     for {
-      size <- Gen.choose[Int](0, maxAttrs)
+      size            <- Gen.choose[Int](0, maxAttrs)
       attributesNames <-
         if (size > 0)
           Gen.listOfN(size, XmlValidName.genXmlValidName(maxAttrNameSize)).map(_.distinct)
