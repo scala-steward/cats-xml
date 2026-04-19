@@ -192,13 +192,13 @@ object NodeCursor {
         current: XmlNode
       ): Cursor.Result[XmlNode] = {
         history match {
-          case Nil => Right(current)
+          case Nil       => Right(current)
           case op :: ops =>
             val result: Cursor.Result[XmlNode] = op match {
               case NodeCursor.Op.Down(nodeName) =>
                 current
                   .fold(
-                    ifNode = _.filterChildren(nodeName).asRight,
+                    ifNode  = _.filterChildren(nodeName).asRight,
                     ifGroup = group =>
                       if (group.isEmpty)
                         CursorFailure

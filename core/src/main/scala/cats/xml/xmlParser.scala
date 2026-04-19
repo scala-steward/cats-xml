@@ -45,7 +45,7 @@ private[xml] trait XmlParserInstances {
   implicit val xmlParserForTry: XmlParser[Try] = (inputStream: InputStream) =>
     Try {
 
-      var documentNode: XmlNode = null
+      var documentNode: XmlNode   = null
       val handler: DefaultHandler = new DefaultHandler {
 
         var nodes: List[XmlNode] = Nil

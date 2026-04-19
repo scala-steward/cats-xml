@@ -34,7 +34,7 @@ object TypeInfoInstances {
         val isPrimitiveWrapper: Expr[Boolean]                   = Expr(utils.isPrimitiveWrapper[T])
         val isPrimitive: Expr[Boolean]                          = Expr(utils.isPrimitive[T])
         val isValueClass: Expr[Boolean]                         = Expr(utils.isValueClass[T])
-        val isOptionOfAnyPrimitiveOrString: Expr[Boolean] = Expr(
+        val isOptionOfAnyPrimitiveOrString: Expr[Boolean]       = Expr(
           utils.isOptionOfAnyPrimitiveOrString[T]
         )
 
