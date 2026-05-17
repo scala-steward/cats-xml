@@ -90,7 +90,7 @@ object CursorFailure {
       case MissingNodeHead(path)            => s"Missing head node${pathAt(path)}"
       case MissingNodeLast(path)            => s"Missing last node${pathAt(path)}"
       case MissingText(path)                => s"Missing text${pathAt(path)}'"
-      case ValidationsFailed(path, eNel) =>
+      case ValidationsFailed(path, eNel)    =>
         s"Validations (${eNel.size}) failed${pathAt(path)}. ${eNel.toList.mkString("\n- ", "\n- ", "")}"
       case LeftBoundLimitAttr(path, lastKey) =>
         s"Reached left bound limit attribute${pathAt(path)}, last valid key '$lastKey'"

@@ -78,7 +78,7 @@ object Decoder extends DecoderInstances with DecoderSyntax {
           DecoderFailure.Custom("Cannot decode the value.").invalidNel[T]
         )((err, decoder) => {
           err match {
-            case v @ Validated.Valid(_) => v
+            case v @ Validated.Valid(_)     => v
             case Validated.Invalid(errors1) =>
               decoder.decode(xml) match {
                 case v @ Validated.Valid(_)     => v
@@ -91,7 +91,7 @@ object Decoder extends DecoderInstances with DecoderSyntax {
   def fromCursor[U](
     f: NodeCursor => FreeCursor[Xml, U]
   ): Decoder[U] = Decoder.of {
-    case Left(failure) => DecoderFailure.CursorFailed(failure).invalidNel
+    case Left(failure)   => DecoderFailure.CursorFailed(failure).invalidNel
     case Right(xml: Xml) =>
       f(Root).focus(xml) match {
         case Validated.Valid(value) => value.validNel
@@ -165,14 +165,14 @@ sealed private[xml] trait DecoderDataInstances {
 
   import cats.implicits.*
 
-  implicit val decodeXml: Decoder[Xml] = Decoder.id
+  implicit val decodeXml: Decoder[Xml]         = Decoder.id
   implicit val decodeXmlData: Decoder[XmlData] = decodeXml.flatMapF {
     case data: XmlData => data.validNel
     case xml           => DecoderFailure.Custom(s"Unable to decode $xml to XmlData").invalidNel
   }
   implicit val decodeString: Decoder[String] = Decoder.id.flatMapF {
     case XmlAttribute(_, value) => decodeString.decode(value)
-    case data: XmlData =>
+    case data: XmlData          =>
       def rec(d: XmlData): String = d match {
         case XmlNull          => "null" // should never happen
         case XmlString(value) => value
@@ -190,14 +190,14 @@ sealed private[xml] trait DecoderDataInstances {
       }
     case sbj => DecoderFailure.NoTextAvailable(sbj).invalidNel
   }
-  implicit val decodeUnit: Decoder[Unit] = Decoder.pure[Unit](())
+  implicit val decodeUnit: Decoder[Unit]       = Decoder.pure[Unit](())
   implicit val decodeBoolean: Decoder[Boolean] = decodeString.map(_.toLowerCase).emap[Boolean] {
     case "true"  => Right(true)
     case "false" => Right(false)
     case v       => Left(DecoderFailure.CoproductNoMatch[Any](v, Vector(true, false, 1, 0)))
   }
   implicit val decodeCharArray: Decoder[Array[Char]] = decodeString.map(_.toCharArray)
-  implicit val decodeChar: Decoder[Char] = decodeString.emap(s => {
+  implicit val decodeChar: Decoder[Char]             = decodeString.emap(s => {
     if (s.nonEmpty && s.length == 1)
       Right(s.head)
     else

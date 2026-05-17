@@ -78,7 +78,7 @@ object MagnoliaDecoder {
 
       subtypeTypeClass.map(_.typeclass.decode(xml)) match {
         case Some(result) => result
-        case None =>
+        case None         =>
           DecoderFailure
             .Custom(
               s"Cannot find a valid subtype for sealed trait ${ctx.typeName.full}. Config: $config"
