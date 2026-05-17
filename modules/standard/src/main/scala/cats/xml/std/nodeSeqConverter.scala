@@ -68,8 +68,8 @@ private[std] object NodeSeqConverter extends NodeSeqConverterInstances with Node
     }
 
     Elem(
-      prefix = null,
-      label  = tree.label,
+      prefix     = null,
+      label      = tree.label,
       attributes = tree.attributes
         .map(a => XmlAttribute.toMetaData(a))
         .foldLeft[MetaData](Null)(MetaData.concatenate),
